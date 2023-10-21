@@ -31,7 +31,7 @@
 | area_id        | integer    | null: false                    |
 | shipping_day_id| integer    | null: false                    |
 | price          | integer    | null: false                    |
-| user_id        | references | null: false,foreign_key: true  |
+| user           | references | null: false,foreign_key: true  |
 
 
 ### Association
@@ -43,12 +43,12 @@
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| user_id| references | null: false,foreign_key: true  |
+| user   | references | null: false,foreign_key: true  |
 | item   | references | null: false,foreign_key: true  |
 
 ### Association
 
-- has_many :user
+- belongs_to :user
 - belongs_to :item
 - has_one :shipping
 
@@ -56,13 +56,13 @@
 
 | Column         | Type       | Options     |
 | -------------- | ---------- | ----------- |
-|post_code       | integer    | null: false |
+|post_code       | string     | null: false |
 |prefecture      | string     | null: false |
 |city            | string     | null: false |
 |street_address  | string     | null: false |
 |room_number     | string     |             |
-|telephone       | integer    | null: false |
-|buy             | string     | null: false |
+|telephone       | string     | null: false |
+|buy             | references | null: false |
 
 
 ### Association

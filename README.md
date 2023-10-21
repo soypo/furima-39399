@@ -21,27 +21,25 @@
 
 ## items(商品情報) テーブル
 
-| Column         | Type   | Options     |
-| -------------- | ------ | ----------- |
-| name           | string | null: false |
-| detail         | string | null: false |
-| category       | string | null: false |
-| condition      | string | null: false |
-| delivery_fee   | string | null: false |
-| area           | string | null: false |
-| shipping_day   | string | null: false |
-| price          | string | null: false |
-| handling_charge| string | null: false |
-| profit         | string | null: false |
+| Column         | Type       | Options     |
+| -------------- | ---------- | ----------- |
+| name           | string     | null: false |
+| detail         | text       | null: false |
+| category_id    | integer    | null: false |
+| condition_id   | integer    | null: false |
+| delivery_fee_id| integer    | null: false |
+| area_id        | integer    | null: false |
+| shipping_day_id| integer    | null: false |
+| price          | integer    | null: false |
+| user           | references | null: false |
 
 
 ### Association
 
-- has_many :buy
-- has_many :shipping
+- has_one :buy
 - belongs_to :user
 
-## buy(購入) テーブル
+## buys(購入) テーブル
 
 | Column | Type       | Options     |
 | ------ | ---------- | ----------- |
@@ -50,10 +48,11 @@
 
 ### Association
 
+
 - belongs_to :item
 - belongs_to :shipping
 
-## shipping(配送先) テーブル
+## shippings(配送先) テーブル
 
 | Column         | Type       | Options     |
 | -------------- | ---------- | ----------- |
@@ -61,13 +60,12 @@
 |prefecture      | string     | null: false |
 |city            | string     | null: false |
 |street_address  | string     | null: false |
-|room_number     | string     | null: false |
+|room_number     | string     |             |
 |telephone       | string     | null: false |
 
 
 ### Association
 
-- has_many :items
 - has_many :buys
 
 ## comments テーブル

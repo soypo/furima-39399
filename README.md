@@ -2,26 +2,22 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| Nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| famiry_name        | string | null: false |
-| first_name         | string | null: false |
-| famiry_name_kana   | string | null: false |
-| first_name_kana    | string | null: false |
-| birth_year         | string | null: false |
-| birth_month        | string | null: false |
-| birth_day          | string | null: false |
-
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| famiry_name        | string | null: false               |
+| first_name         | string | null: false               |
+| famiry_name_kana   | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birth_day          | date   | null: false               |
 
 
 ### Association
 
 - has_many :items
-- has_many :buy
-- has_many :shipping
+- has_many :buys
 
 ## items(商品情報) テーブル
 
@@ -43,32 +39,36 @@
 
 - has_many :buy
 - has_many :shipping
-- belongs_to :users
+- belongs_to :user
 
 ## buy(購入) テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| room   | references | null: false, foreign_key: true |
+| Column | Type       | Options     |
+| ------ | ---------- | ----------- |
+| user   | references | null: false |
+| item   | references | null: false |
 
 ### Association
 
-- belongs_to :
-- belongs_to :
+- belongs_to :item
+- belongs_to :shipping
 
 ## shipping(配送先) テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     |                                |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
+| Column         | Type       | Options     |
+| -------------- | ---------- | ----------- |
+|post_code       | string     | null: false |
+|prefecture      | string     | null: false |
+|city            | string     | null: false |
+|street_address  | string     | null: false |
+|room_number     | string     | null: false |
+|telephone       | string     | null: false |
+
 
 ### Association
 
-- belongs_to :
-- belongs_to :
+- has_many :items
+- has_many :buys
 
 ## comments テーブル
 
@@ -79,5 +79,4 @@
 
 ### Association
 
-- belongs_to :
-- belongs_to :
+- belongs_to :item

@@ -56,8 +56,8 @@
 
 | Column         | Type       | Options     |
 | -------------- | ---------- | ----------- |
-|post_code       | integer    | null: false |
-|prefecture      | integer    | null: false |
+|post_code       | string     | null: false |
+|area_id         | integer    | null: false |
 |city            | string     | null: false |
 |street_address  | string     | null: false |
 |room_number     | string     |             |
